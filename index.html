@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hot Yoga Over Hangman</title>
+	<meta charset="utf-8">
+	<meta name="description" content="Game to guess a yoga pose for homework 3 instead of a hangman game.">
+	<link rel="stylesheet" type="text/css" href="assets/reset.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Shadows+Into+Light" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="assets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+
+</head>
+<body onkeypress="">
+	<div class="game center">
+		<div class="game-instructions">
+			<h1><span id="not">Hangman</span> Hot Yoga</h1>
+			<p>Can you guess the yoga pose before class gets too hot to handle?<p>
+			<p class="desktop">Press any key to get started</p>
+			<p class="mobile">Type a letter here to get started</p>
+		</div><!-- instructions -->
+		<div class="game-play">
+			<div class="game-guesses">
+				<div class="yogaPose" id="yogaPose" alt="image of yoga pose to be guessed">
+				</div>
+				<h3>What is this pose?</h3>
+			</div>
+			<div class="game-scores">
+				<h3>Pose Name: <span id="poseName">_ _ _ _ _</span></h3>
+				<div class="pastGuess" id="pastGuess"></div>
+				<div class="left">
+					<p>
+					You have <span id="guessLeft">0</span> guesses left<br>
+					Yogi game on point after winning <span id="gameWins">0</span> times<br>
+					You've proven a need for more training <span id="gameLoses">0</span> times.
+					</p>
+				</div>
+			</div>
+		</div><!-- game play -->
+	</div><!--game-->
+	
+	<script src="assets/game.js"></script>
+</body>
+</html>

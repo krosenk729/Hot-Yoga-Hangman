@@ -1,0 +1,146 @@
+/* Styles for Woeek-3-Homework *
+
+/**************************
+* Basic Font Setup 
+***************************/
+
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*
+Light grey: #f1f2f0;
+Med grey:#e1e0dd;
+Dark grey: ;
+Orange: #ec6b2d;
+Blue: #37bbe4;
+*/
+
+/* Recovering from Reset */
+head{ display: none }
+h1 { font-size: 2.5em; margin: .67em 0; font-family: 'Shadows Into Light', cursive}
+h2 { font-size: 1.5em; margin: .75em 0 }
+h3, p.instructions { font-size: 1.17em; margin: .83em 0 }
+h4, p, blockquote, ul, fieldset, form, ol, dl, dir, menu, textarea, input { margin: 1.12em 0 }
+h5 { font-size: .83em; margin: 1.5em 0 }
+h6 { font-size: .75em; margin: 1.67em 0 }
+h1, h2, h3, h4, h5, h6, b, strong{font-weight: bolder }
+button, textarea, input, select   { display: inline-block }
+br:before { content: "\A"; white-space: pre-line }
+
+html, body{
+	height: 100%;
+	width: 100%;
+	position: fixed;
+}
+
+body{
+	overflow-x: hidden;
+	color: #333333;
+	font-family: Arial, sans-serif;
+}
+
+.center{
+	text-align: center;
+}
+
+.left{
+	text-align: left;
+}
+
+.clearfix{
+	overflow: hidden;
+}
+
+.clearfix:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+
+
+
+/**************************
+* Game Board Setup
+***************************/
+
+.game{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	overflow: scroll;
+}
+
+.game > div{
+	flex-basis: 100%;
+	margin: 1% 5%;
+}
+
+.game-play{
+	display: flex;
+	justify-content: space-between;
+}
+
+.game-play > div {
+	border: 2px solid #ddd;
+	flex-basis: 100%;
+	padding: 5%;
+}
+
+.game .game-instructions{
+	flex-basis: 20%;
+	margin: 0 5%;
+}
+
+.game .game-guesses{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-basis: 35%;
+}
+
+.game-scores{}
+
+/**************************
+* Game Styling
+***************************/
+
+#not{
+	text-decoration: line-through;
+}
+
+#yogaPose{
+	background-image: url('hot-yoga-sprites.png');
+	height: 150px;
+	width: 150px;
+	background-position: 0 0;
+	float: left;
+}        
+#poseName{
+	padding-bottom: 10px;
+	letter-spacing: .5px;
+}
+
+.pastGuess li{
+	display: inline;
+	letter-spacing: .5px;
+}
+
+.pastGuess li:nth-child(n+2):before{
+	content: ', ';
+}
+
+@media screen and (max-width: 500px){
+	.game-play {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.game-guesses{
+		flex-basis: 100%;
+	}
+}
