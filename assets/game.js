@@ -4,7 +4,8 @@ var poses = ['half moon', 'boat', 'cobra', 'plow', 'standing bow', 'bridge', 'cr
 var randIndex = 0;
 var gamePose = poses[randIndex];
 var numWins = 0, numLose = 0, maxGuess = 12;
-var guessLeft = maxGuess, guessRight = 0, pastGuess = []; 
+var guessLeft = maxGuess, pastGuess = []; 
+var gameBoard = '_';
 var currentGuess = 'a';
 
 // function to set up a new game
@@ -12,15 +13,16 @@ function gameSet(){
 	randIndex = Math.floor( Math.random() * poses.length);
 	gamePose = poses[randIndex];
 	guessLeft = maxGuess;
-	guessRight = 0;
 	pastGuess = [];
+	gameBoard = createDashes(gamePose,'');
 
 	console.log("Pose to guess " + gamePose); 
 
 	document.getElementById('yogaPose').style.cssText = 'background-position-x: '+ -150*randIndex + 'px; background-position-y: 0px;';
-	document.getElementById('guessLeft').innerHTML = guessLeft;
+	document.getElementById('guessLeft').innerHTML = guessLeft + ' guesses left';
+	document.getElementById('mobileKey').value = '';
 	document.getElementById('pastGuess').innerHTML = '';
-	document.getElementById('poseName').innerHTML = createDashes(gamePose, 	'');
+	document.getElementById('poseName').innerHTML = gameBoard;
 }
 
 // invoke function on load
@@ -45,28 +47,31 @@ document.body.onkeypress = function(event){ keyPlay(event); };
 function gamePlay(){
 	guessLeft --;
 	pastGuess.push(currentGuess);
-	document.getElementById('pastGuess').innerHTML += ( currentGuess );
-	document.getElementById('guessLeft').innerHTML = ( guessLeft );
+
+	document.getElementById('pastGuess').innerHTML += currentGuess;
+	document.getElementById('guessLeft').innerHTML = guessLeft + ' guesses left';
 
 	// check if this is a correct guess
 	if( findIndexes(gamePose, currentGuess).length > 0 ){
 
-		guessRight ++;
-		document.getElementById('poseName').innerHTML = createDashes(gamePose, pastGuess) ;
+		gameBoard = createDashes(gamePose, pastGuess) ;
+		document.getElementById('poseName').innerHTML = gameBoard;
 
 	} 
 
 	// check this is game-ending (either win or out of guesses)
-	// issue with using this method for poses that have a space in the mae
-	if( guessRight == gamePose.length ){
+	// issue with using this method for poses that have a space in the name
+	if( gameBoard.indexOf('_') == -1 ){
 
 		numWins ++;
+		document.getElementById('gameWins').innerHTML = numWins + ' wins';
 		alert("You win");
 		gameSet();
 
 	}else if ( guessLeft <= 0 ){
 
 		numLose ++;
+		document.getElementById('gameLoses').innerHTML = numLose + ' utter failures';
 		alert("Too hot");
 		gameSet(); 
 	
@@ -96,7 +101,7 @@ function createDashes(word, letters){
 	for(i = 0; i < word.length; i++){
 		
 		if( letters.indexOf(word[i]) === -1 ){
-			word[i] == ' ' ? allDashes += ' ' : allDashes += '_ ';
+			word[i] == ' ' ? allDashes += '  ' : allDashes += '_ ';
 		} else{
 			allDashes += word[i];
 		}

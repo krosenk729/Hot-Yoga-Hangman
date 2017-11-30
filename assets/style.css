@@ -60,7 +60,9 @@ body{
 	clear: both;
 }
 
-
+.mobile{
+	display: none;
+}
 
 /**************************
 * Game Board Setup
@@ -101,6 +103,7 @@ body{
 	flex-direction: column;
 	align-items: center;
 	flex-basis: 35%;
+	min-height: 210px;
 }
 
 .game-scores{}
@@ -120,18 +123,23 @@ body{
 	background-position: 0 0;
 	float: left;
 }        
-#poseName{
+#poseName, #pastGuess{
 	padding-bottom: 10px;
 	letter-spacing: .5px;
 }
 
-.pastGuess li{
-	display: inline;
-	letter-spacing: .5px;
+.counters{
+	font-family: 'Shadows Into Light', cursive;
+	font-size: 20px;
 }
 
-.pastGuess li:nth-child(n+2):before{
-	content: ', ';
+.counters span{
+	font-family: Arial, sans-serif;
+	font-size: 16px;
+}
+
+.mobileGuess{
+	display: inline;
 }
 
 @media screen and (max-width: 500px){
@@ -140,7 +148,15 @@ body{
 		justify-content: center;
 	}
 
-	.game-guesses{
+	.game .game-guesses{
 		flex-basis: 100%;
+	}
+
+	.mobile{
+		display: inherit;
+	}
+
+	.desktop{
+		display: none;
 	}
 }
