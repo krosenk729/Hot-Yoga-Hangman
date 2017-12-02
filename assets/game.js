@@ -1,6 +1,7 @@
 // initialize variables
 
-var poses = ['half moon', 'boat', 'cobra', 'plow', 'standing bow', 'bridge', 'crane', 'ext mountain', 'down dog', 'warrior']
+var poses = ['half moon', 'boat', 'cobra', 'plow', 'standing bow', 'bridge', 'crane', 'ext mountain', 'down dog', 'warrior'];
+var gameCommentary = ['Unroll your mat. It is time to guess', 'Warmming warming up up up', 'I feel the heat...', 'Did I see a drop of sweat on your mat?', 'So hot in. Hot in hurr', 'Who invented HOT yoga anyway?', 'We are all just guessing when it comes to yoga right?', 'Those sweat glands are getting a workout', 'Really? I am done. Namaste to the heat'];
 var randIndex = 0;
 var gamePose = poses[randIndex];
 var numWins = 0, numLose = 0, maxGuess = 12;
@@ -22,6 +23,7 @@ function gameSet(){
 	document.getElementById('guessLeft').innerHTML = guessLeft + ' guesses left';
 	document.getElementById('mobileKey').value = '';
 	document.getElementById('pastGuess').innerHTML = '';
+	document.getElementById('gameComment').innerHTML = gameCommentary[0];
 	document.getElementById('poseName').innerHTML = gameBoard;
 }
 
@@ -51,6 +53,11 @@ function gamePlay(){
 	document.getElementById('pastGuess').innerHTML += currentGuess;
 	document.getElementById('guessLeft').innerHTML = guessLeft + ' guesses left';
 
+	
+	var c = Math.min(maxGuess - guessLeft, gameCommentary.length - 1);
+	document.getElementById('gameComment').innerHTML = gameCommentary[c];
+
+
 	// check if this is a correct guess
 	if( findIndexes(gamePose, currentGuess).length > 0 ){
 
@@ -65,16 +72,20 @@ function gamePlay(){
 
 		numWins ++;
 		document.getElementById('gameWins').innerHTML = numWins + ' wins';
-		alert("You win");
 		gameSet();
+
+		document.querySelector('.modal > h1').innerHTML = 'Way to Win';
+		document.querySelector('.game-modal').style.display = 'block';
 
 	}else if ( guessLeft <= 0 ){
 
 		numLose ++;
 		document.getElementById('gameLoses').innerHTML = numLose + ' utter failures';
-		alert("Too hot");
-		gameSet(); 
-	
+		gameSet();
+
+		document.querySelector('.modal > h1').innerHTML = 'No Inner Peace for You';
+		document.querySelector('.game-modal').style.display = 'block';
+
 	} else {
 		// this would be easier with jquery
 		document.getElementById('yogaPose').style.cssText = 'background-position-x: '+ -150*randIndex + 'px; background-position-y: ' + Math.max(-1350, -150 * (maxGuess - guessLeft)) + 'px;'; 
@@ -110,3 +121,4 @@ function createDashes(word, letters){
 	return allDashes;
 
 }
+

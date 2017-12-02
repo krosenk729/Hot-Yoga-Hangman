@@ -10,19 +10,11 @@
 	box-sizing: border-box;
 }
 
-/*
-Light grey: #f1f2f0;
-Med grey:#e1e0dd;
-Dark grey: ;
-Orange: #ec6b2d;
-Blue: #37bbe4;
-*/
-
 /* Recovering from Reset */
 head{ display: none }
-h1 { font-size: 2.5em; margin: .67em 0; font-family: 'Shadows Into Light', cursive}
-h2 { font-size: 1.5em; margin: .75em 0 }
-h3, p.instructions { font-size: 1.17em; margin: .83em 0 }
+h1 { font-size: 2.7em; margin: .67em 0; font-family: 'Shadows Into Light', cursive}
+h2 { font-size: 1.3em; margin: .75em 0 }
+h3, p.instructions, button { font-size: 1.17em; margin: .83em 0 }
 h4, p, blockquote, ul, fieldset, form, ol, dl, dir, menu, textarea, input { margin: 1.12em 0 }
 h5 { font-size: .83em; margin: 1.5em 0 }
 h6 { font-size: .75em; margin: 1.67em 0 }
@@ -74,15 +66,17 @@ body{
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .game > div{
-	flex-basis: 100%;
-	margin: 1% 5%;
+	margin: 0 5%;
+	flex-grow: 0;
 }
 
-.game-play{
+
+.game .game-play{
+	flex-grow: 1;
 	display: flex;
 	justify-content: space-between;
 }
@@ -93,11 +87,6 @@ body{
 	padding: 5%;
 }
 
-.game .game-instructions{
-	flex-basis: 20%;
-	margin: 0 5%;
-}
-
 .game .game-guesses{
 	display: flex;
 	flex-direction: column;
@@ -106,7 +95,6 @@ body{
 	min-height: 210px;
 }
 
-.game-scores{}
 
 /**************************
 * Game Styling
@@ -126,6 +114,10 @@ body{
 #poseName, #pastGuess{
 	padding-bottom: 10px;
 	letter-spacing: .5px;
+}        
+
+#pastGuess{
+	letter-spacing: .7em;
 }
 
 .counters{
@@ -137,6 +129,57 @@ body{
 	font-family: Arial, sans-serif;
 	font-size: 16px;
 }
+
+.game .game-commentary{
+	font-weight: lighter;
+	background-color: #dddddd;
+	flex-grow: 0;
+	padding: 2%;
+	margin-bottom: 15px;
+}
+
+
+/**************************
+* Modal Styles
+***************************/
+.game-modal{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+    overflow: auto; 
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal{
+	margin: 10% auto;
+	padding: 20px;
+	width: 65%;
+	min-width: 200px;
+	background-color: #fdfbfb;
+	background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); 
+}
+
+.modal button{
+	background-color: rgba(255,255,255,0);
+	border: 2px solid #ebedee;
+	padding: 5% 8%;
+	transition: 1s;
+}
+
+.modal button:hover{
+	background-color: #dddddd;
+}
+
+/**************************
+* Last but not least... mobile
+***************************/
 
 @media screen and (max-width: 500px){
 	.game-play {

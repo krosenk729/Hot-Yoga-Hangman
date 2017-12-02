@@ -10,7 +10,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
 
 </head>
-<body onkeypress="">
+<body>
 	<div class="game center">
 		<div class="game-instructions">
 			<h1><span id="not">Hangman</span> Hot Yoga</h1>
@@ -22,7 +22,6 @@
 				<div class="yogaPose" id="yogaPose" alt="image of yoga pose to be guessed">
 				</div>
 				<p>What is this pose?</p>
-				<!--Warming up ; getting hotter ; sweat beads coming ; did I see a drop of sweat? ; getting hot in hurr ; the heat though -->
 			</div>
 			<div class="game-scores">
 				<h3>Pose Name: <span id="poseName">_ _ _ _ _</span></h3>
@@ -40,8 +39,21 @@
 				</div>
 			</div>
 		</div><!-- game play -->
+		<div class="game-commentary">
+			<h2 id="gameComment"> </h2>
+		</div>
 	</div><!--game-->
+
 	
+	<div class="game-modal">
+		<div class="modal center">
+			<h1>Way to win</h1>
+			<p>Time for savasana, to roll up your mat and rub down with some essential oils</p>
+			<button onclick="document.querySelector('.game-modal').style.display = 'none'; ">Namaste</button>
+		</div>
+	</div><!--modal-->
+
+
 	<script src="assets/game.js"></script>
 </body>
 </html>
