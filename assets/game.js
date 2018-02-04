@@ -1,3 +1,4 @@
+(function(){
 // initialize variables
 
 var poses = ['half moon', 'boat', 'cobra', 'plow', 'standing bow', 'bridge', 'crane', 'ext mountain', 'down dog', 'warrior'];
@@ -121,4 +122,4 @@ function createDashes(word, letters){
 	return allDashes;
 
 }
-
+})();
