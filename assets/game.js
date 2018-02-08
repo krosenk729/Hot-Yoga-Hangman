@@ -43,8 +43,7 @@ function keyPlay(event){
 }
 
 // invoke function on key click
-document.body.onkeypress = function(event){ keyPlay(event); };
-
+document.body.onkeyup = function(event){ keyPlay(event); };
 
 // function to execute game play
 function gamePlay(){
