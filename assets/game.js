@@ -44,6 +44,7 @@ function keyPlay(event){
 
 // invoke function on key click
 document.body.onkeyup = function(event){ keyPlay(event); };
+document.querySelector('input').onkeyup = function(event){ keyPlay(event); };
 
 // function to execute game play
 function gamePlay(){
