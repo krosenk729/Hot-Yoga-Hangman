@@ -44,7 +44,20 @@ function keyPlay(event){
 
 // invoke function on key click
 document.body.onkeypress = function(event){ keyPlay(event); };
+document.querySelector('input').onkeydown = function(event){ keyPlay(event); };
 document.querySelector('input').onkeypress = function(event){ keyPlay(event); };
+document.querySelector('input').onkeyup = function(event){ keyPlay(event); };
+
+document.querySelector('input').addEventListener('keydown', function(event){ 
+	keyPlay(event); 
+});
+document.querySelector('input').addEventListener('keypress', function(event){ 
+	keyPlay(event); 
+});
+document.querySelector('body').addEventListener('keypress', function(event){ 
+	keyPlay(event); 
+});
+
 
 // function to execute game play
 function gamePlay(){
