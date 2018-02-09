@@ -1,6 +1,6 @@
 (function(){
-// initialize variables
 
+// initialize variables
 var poses = ['half moon', 'boat', 'cobra', 'plow', 'standing bow', 'bridge', 'crane', 'ext mountain', 'down dog', 'warrior'];
 var gameCommentary = ['Unroll your mat. It is time to guess', 'Warmming warming up up up', 'I feel the heat...', 'Did I see a drop of sweat on your mat?', 'So hot in. Hot in hurr', 'Who invented HOT yoga anyway?', 'We are all just guessing when it comes to yoga right?', 'Those sweat glands are getting a workout', 'Really? I am done. Namaste to the heat'];
 var randIndex = 0;
@@ -33,34 +33,25 @@ gameSet();
 
 
 // function to determine if game play should occur
-function keyPlay(event){
-	var k = event.which || event.keyCode;
-	currentGuess = String.fromCharCode(k).toLowerCase();
-
-	console.log("Current guess " + currentGuess);
-
-	if( k >= 65 && k <= 122 && pastGuess.indexOf(currentGuess) == -1 ){ gamePlay(); }
-}
-
-// invoke function on key click
-document.body.onkeypress = function(event){ keyPlay(event); };
-document.querySelector('input').onkeydown = function(event){ keyPlay(event); };
-document.querySelector('input').onkeypress = function(event){ keyPlay(event); };
-document.querySelector('input').onkeyup = function(event){ keyPlay(event); };
-
-document.querySelector('input').addEventListener('keydown', function(event){ 
-	keyPlay(event); 
-});
-document.querySelector('input').addEventListener('keypress', function(event){ 
-	keyPlay(event); 
-});
-document.querySelector('body').addEventListener('keypress', function(event){ 
-	keyPlay(event); 
-});
+// invoked on key click
+document.body.onkeypress = function(event){ 
+	var k = event.key.match(/[A-Za-z]/);
+	if( k && pastGuess.indexOf(currentGuess = k[0].toLowerCase()) == -1 ){
+		gamePlay();
+	}
+};
+document.querySelector('input').onchange = function( event ){
+	var k = event.target.value[event.target.value.length -1] ;
+	if( k.match(/[A-Za-z]/) && pastGuess.indexOf(currentGuess = k.toLowerCase())){
+		gamePlay();
+	}
+	document.querySelector('input').value = '';
+};
 
 
 // function to execute game play
 function gamePlay(){
+	console.log('Playing guess ' + currentGuess);
 	guessLeft --;
 	pastGuess.push(currentGuess);
 
